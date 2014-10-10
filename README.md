@@ -1,18 +1,17 @@
-# Mug Music
+# Mug Music Pi
 
-By Bonnie Eisenman and Harvest Zhang
+This fork is a stripped down version of Mug Music by Bonnie Eisenman and Harvest Zhang, which I adapted for use on Raspberry Pi.
 
 ## How to Use
 
-A full Instructable can be found at (link tbd).
+I'll fill in as much as I can [here](http://conormcgee.com/projects/mug-music-pi/).
 
 ## Credits
 
 Code adapted from:
 - madlabdk's touche_peak file is reproduced here without significant modifications: https://github.com/madlabdk/touche
-- Mostly based on instrcutions here: www.instructables.com/id/Touche-for-Arduino-Advanced-touch-sensing/?ALLSTEPS
+- Mostly based on instructions here: www.instructables.com/id/Touche-for-Arduino-Advanced-touch-sensing/?ALLSTEPS
 - Original Touché paper: http://www.disneyresearch.com/wp-content/uploads/touchechi2012.pdf
-- ChucK is a project from our school, Princeton University
-
-Sound files are from [Mike Koenig](http://koenigmediallc.com/mike-koenig-nc.php), liscensed under Creative Commons 3.0. We adapted them here.
+- ChucK is a project from Princeton University.
+- The origin project from which this was forked.
 
