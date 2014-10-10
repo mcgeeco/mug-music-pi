@@ -24,7 +24,6 @@ if(!cereal.open(device, SerialIO.B9600, SerialIO.ASCII))
 	me.exit();
 }
 
-
 Mug muggy;
 
 while(true)
@@ -33,15 +32,16 @@ while(true)
     cereal.getInts() @=> int ints[];
     if(ints$Object != null) {
 
-//    for(int i; i < ints.cap(); i++) {
-  //      chout <= ints[i] <= " ";
-    //    }
+    for(int i; i < ints.cap(); i++) {
+        chout <= ints[i] <= " ";
+        }
+	chout <= IO.newline();
 
-        ints[0] => int pos;
-        ints[1] => int val;
-        muggy.play(pos);
-      	chout <= ints[0] <= " " <=  ints[1];
- 	 }
+        ints[0] => int val;
+        ints[1] => int pos;
+        muggy.play(val, pos);
+        
+    }
 }
 
 
@@ -51,26 +51,30 @@ class Mug {
     ADSR env;
     PRCRev reverb;
     Gain g;
+    Pan2 p;
     
-    c => env => reverb => g => dac;
-    g.gain(0.5);
+    c => env => reverb => g => p => dac;
+    g.gain(0.35);
+    1 => p.pan;
     env.set(10::ms, 200::ms, 0.5, 100::ms);
     0 => int lastVal;
     
-    fun void play(int val) {
+    fun void play(int val, int pos) {
         // Loitering reading
-        if (val < 35) {
+        if (val < 28) {
             env.keyOff();
         }
         else if (val != lastVal) {
                 env.keyOff();
-//                10::ms => now;
+                10::ms => now;
                 env.keyOn();
             }
         
-        c.freq(Std.mtof(val));
+        if (pos < 270) {
+		val + 20 => val;
+	}
+
+        c.freq(Std.mtof(val+40));
         val => lastVal;
-        chout <= val <= IO.newline();
-        
-    }
+       } 
 }

@@ -42,15 +42,24 @@ g.gain(0.8);
 
 while(true)
 {
-    cereal.onLine() => now;
-    cereal.getLine() => string line;
+    cereal.onInts(2) => now;
+    cereal.getInts() @=> int ints[];
 
-    if(line$Object != null) {
-        chout <= "read line: " <= line <= IO.newline();
-        StringTokenizer tok;
-        tok.set(line);
-        Std.atoi(tok.next()) => int pos;
-        Std.atoi(tok.next()) => int val;
+
+
+    if(ints$Object != null) {
+
+    for(int i; i < ints.cap(); i++) {
+        chout <= ints[i] <= " ";
+        }
+    
+    chout <= IO.newline();
+
+
+        (ints[0]) => int pos;
+
+        (ints[1]) => int val;
         osc.freq(Std.mtof(pos)); // Change sin wave frequency
     }
+//    200::ms => now;
 }
