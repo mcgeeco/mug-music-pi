@@ -5,7 +5,7 @@ for(int i; i < list.cap(); i++)
     chout <= i <= ": " <= list[i] <= IO.newline();
 }
 
-// parse first argument as device number
+// parse first argument as device number - on Pi this is always 0
 0 => int device;
 if(me.args()) {
     me.arg(0) => Std.atoi => device;
@@ -54,13 +54,13 @@ class Mug {
     Pan2 p;
     
     c => env => reverb => g => p => dac;
-    g.gain(0.35);
-    1 => p.pan;
+    g.gain(0.35);               //higher gains may result in distortion!
+    1 => p.pan;     // panning left or right
     env.set(10::ms, 200::ms, 0.5, 100::ms);
     0 => int lastVal;
     
     fun void play(int val, int pos) {
-        // Loitering reading
+        // Loitering reading - this value will depend on your setup, and may creep incrementally over time
         if (val < 28) {
             env.keyOff();
         }
@@ -70,7 +70,7 @@ class Mug {
                 env.keyOn();
             }
         
-        if (pos < 270) {
+        if (pos < 270) {   //I increased the overall pitch for artistic reasons. May not be necessary for you
 		val + 20 => val;
 	}
 
